@@ -1,37 +1,18 @@
-// const jsonServer = require('json-server');
-// const server = jsonServer.create();
-// const router = jsonServer.router('jobs.json'); // Path to your JSON file
-// const middlewares = jsonServer.defaults();
+const jsonServer = require('json-server');
+const path = require('path');
 
-// // Vercel exposes the API at /api/json-server
-// server.use(middlewares);
-// server.use(router);
-
-// module.exports = server;
-
-
-
-// JSON Server module
-const jsonServer = require("json-server");
+// Create the server instance
 const server = jsonServer.create();
-const router = jsonServer.router("jobs.json");
 
-// Make sure to use the default middleware
+// Use the local jobs.json file inside the api directory
+const router = jsonServer.router(path.join(__dirname, 'jobs.json'));  // Now pointing to jobs.json inside 'api'
+
+// Default middlewares
 const middlewares = jsonServer.defaults();
 
+// Use the middlewares and router
 server.use(middlewares);
-// Add this before server.use(router)
-server.use(
- // Add custom route here if needed
- jsonServer.rewriter({
-  "/*": "/$1",
- })
-);
 server.use(router);
-// Listen to port
-server.listen(3000, () => {
- console.log("JSON Server is running");
-});
 
-// Export the Server API
+// Export the server to be used as a Vercel serverless function
 module.exports = server;

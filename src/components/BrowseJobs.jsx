@@ -11,7 +11,7 @@ function BrowseJobs({isHome = false}) {
   const [loading, setLoading] = useState(true);
 
   const fetchJobs = async() => {
-    const apiUrl = isHome ? '/api/jobs?_limit=3' : 'https://json-server-nine-brown.vercel.app/jobs';
+    const apiUrl = isHome ? `${import.meta.env.VITE_API_BASE_URL}/jobs?_limit=3` : '/api/jobs';
     try {
       const res = await fetch(apiUrl);
       const data = await res.json();

@@ -10,7 +10,7 @@
       "use": "@vercel/react"
     },
     {
-      "src": "db.json",
+      "src": "jobs.json",
       "use": "@vercel/static"
     }
   ],

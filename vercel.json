@@ -6,7 +6,7 @@
       "use": "@vercel/static"
     },
     {
-      "src": "src/index.jsx",
+      "src": "src/main.jsx",
       "use": "@vercel/react"
     },
     {

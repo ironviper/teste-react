@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
-    proxy: { '/api': {target: 'https://json-server-nine-brown.vercel.app/',
+    proxy: { '/api': {target: 'https://json-server-nine-brown.vercel.app/jobs',
       changeOrigin: true,
       rewrite: (path) => path.replace(/^\/api/, '')
     } }

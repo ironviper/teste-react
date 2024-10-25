@@ -16,7 +16,7 @@ const App = () =>
 {
 
   async function addJob(newJob) {
-    const res = await fetch('/api/jobs',{
+    const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/jobs`,{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'},
@@ -26,14 +26,14 @@ const App = () =>
   };
 
   async function deleteJob(jobId) {
-    const res = await fetch(`/api/jobs/${jobId}`,{
+    const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/jobs/${jobId}`,{
       method: 'DELETE',
     }
   );
   };
 
   async function editJob(job) {
-    const res = await fetch(`/api/jobs/${job.id}`,
+    const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/jobs/${job.id}`,
       {
         method: "PUT",
         headers: {

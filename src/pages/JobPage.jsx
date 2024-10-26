@@ -11,12 +11,12 @@ const JobPage = ({ deleteJob }) => {
     const job = useLoaderData();
     const navigate = useNavigate();
 
-    function onDeleteclick(jobId) {
+    async function onDeleteclick(jobId) {
         const confirm = window.confirm(`Are you sure you want to delete this job ${jobId}?`);
 
         if (!confirm) return;
 
-        deleteJob(jobId);
+        await deleteJob(jobId);
         toast.success(`Job ${job.title} deleted!`);
         navigate('/jobs');
     }
@@ -27,8 +27,7 @@ const JobPage = ({ deleteJob }) => {
                 <div className="container m-auto py-6 px-6">
                     <Link
                         to="/jobs"
-                        className="text-indigo-500 hover:text-indigo-600 flex items-center"
-                    >
+                        className="text-indigo-500 hover:text-indigo-600 flex items-center">
                         <FaArrowLeft className="ml-2" /> Back to Job Listings
                     </Link>
                 </div>
@@ -78,14 +77,12 @@ const JobPage = ({ deleteJob }) => {
                                 <h3 className="text-xl font-bold mb-6">Manage Job</h3>
                                 <Link
                                     to={`/jobs/edit/${job.id}`}
-                                    className="bg-indigo-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
-                                >
+                                    className="bg-indigo-500 hover:bg-indigo-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block">
                                     Edit Job
                                 </Link>
                                 <button
                                     className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
-                                    onClick={() => onDeleteclick(job.id)}
-                                >
+                                    onClick={() => onDeleteclick(job.id)}>
                                     Delete Job
                                 </button>
                             </div>
@@ -99,7 +96,7 @@ const JobPage = ({ deleteJob }) => {
 
 
 const jobLoader = async ({ params }) => {
-    const res = await fetch(`/api/jobs/${params.id}`);
+    const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/jobs/${params.id}`);
     const data = await res.json();
 
     return data;

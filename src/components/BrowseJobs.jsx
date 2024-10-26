@@ -15,6 +15,8 @@ function BrowseJobs({isHome = false}) {
     try {
       const res = await fetch(apiUrl);
       const data = await res.json();
+      console.log(loading)
+      console.log(data)
       setJobs(data);
     } catch (error) {
       console.log('Error fetching data', error);

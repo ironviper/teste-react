@@ -17,7 +17,7 @@ const AddJobPage = ({addJobSubmit}) => {
 
     const navigate = useNavigate();
 
-    function submitForm(e) {
+    async function submitForm(e) {
         e.preventDefault();
 
         const newJob = {
@@ -34,7 +34,7 @@ const AddJobPage = ({addJobSubmit}) => {
             },
         };
 
-        addJobSubmit(newJob);
+        await addJobSubmit(newJob);
         toast.success(`Job ${newJob.title} added succefully!`);
         return navigate('/jobs');
     };

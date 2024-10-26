@@ -20,7 +20,7 @@ const EditJobPage = ({ editJobInfo }) => {
     
     const navigate = useNavigate();
     
-    function submitForm(e) {
+    async function submitForm(e) {
         e.preventDefault();
 
         const editedJob = {
@@ -37,7 +37,7 @@ const EditJobPage = ({ editJobInfo }) => {
                 contactPhone: companyContactPhone,
             },
         };
-        editJobInfo(editedJob);
+        await editJobInfo(editedJob);
         toast.success(`Job ${editedJob.title} updated succefully!`);
         return navigate(`/jobs/${editedJob.id}`);
     };

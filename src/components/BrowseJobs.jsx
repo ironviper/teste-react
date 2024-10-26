@@ -11,7 +11,7 @@ function BrowseJobs({isHome = false}) {
   const [loading, setLoading] = useState(true);
 
   const fetchJobs = async() => {
-    const apiUrl = isHome ? `${import.meta.env.VITE_API_BASE_URL}/jobs?_limit=3` : `${import.meta.env.VITE_API_BASE_URL}/jobs`;
+    const apiUrl = isHome ? `${import.meta.env.VITE_API_BASE_URL}/jobs?_sort=id&_order=desc&_limit=3` : `${import.meta.env.VITE_API_BASE_URL}/jobs`;
     try {
       const res = await fetch(apiUrl);
       const data = await res.json();
